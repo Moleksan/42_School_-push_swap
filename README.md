@@ -14,8 +14,7 @@ I began the project by organizing the directory structure and creating header fi
   
 ### 2. Parsing Input  
 The first step was to handle user input. I created the `splitt` function to split a single string of numbers into an array of strings if only one argument is provided. This is crucial for processing inputs effectively:
-  
-```c
+
     char **splitt(int argc, char **argv, int *should_free)
     {
         char **args;
@@ -33,24 +32,23 @@ The first step was to handle user input. I created the `splitt` function to spli
             args = argv + 1; // Directly use the command line arguments
         }
      return (args);
-    }
-
+    }  
 - Functionality: This function checks the number of arguments provided and either splits a single argument into individual numbers or uses the command line arguments directly. 
-  
+
 3. Initializing Stacks  
   
 Once the input is processed, the init_stack_a function initializes stack a by converting strings to integers and creating linked list nodes:  
   
-  t_lists *init_stack_a(char **args)
-{
-    t_lists *head = NULL;
-    t_lists *new_node;
-    long num;
-    int i;
-
-    i = 0;
-    while (args[i])
+    t_lists *init_stack_a(char **args)
     {
+      t_lists *head = NULL;
+      t_lists *new_node;
+      long num;
+      int i;
+
+      i = 0;
+      while (args[i])
+      {
         if (check_num(args[i]))
         {
             num = ft_atoi_n(args[i]); // Convert string to integer
@@ -64,9 +62,9 @@ Once the input is processed, the init_stack_a function initializes stack a by co
         else
             print_error();
         i++;
+      }
+      return head;
     }
-    return head;
-}
   
 - Key Functions: 
   - check_num: Validates whether the input string is a valid number.
@@ -77,7 +75,7 @@ Once the input is processed, the init_stack_a function initializes stack a by co
   
 The sorting logic is encapsulated in the sort_stack function, which determines the best sorting strategy based on the number of elements:  
   
-   void sort_stack(t_lists **stack_a, t_lists **stack_b, int argc)
+    void sort_stack(t_lists **stack_a, t_lists **stack_b, int argc)
     {
         if (argc >= 3 && argc <= 6)
         {
